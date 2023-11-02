@@ -32,10 +32,8 @@ class RedactingFormatter(logging.Formatter):
         Returns:
             str: A string representation of record in desired format.
         """
-        record.msg = filter_datum(
-            self.fields, self.REDACTION, record.getMessage(), self.SEPARATOR
-        )
-        return logging.Formatter(self.FORMAT).format(record)
+        msg = logging.Formatter(self.FORMAT).format(record)
+        return filter_datum(self.fields, self.REDACTION, msg, self.SEPARATOR)
 
 
 def filter_datum(
