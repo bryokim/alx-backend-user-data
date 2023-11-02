@@ -5,7 +5,6 @@ import logging
 import os
 import re
 from mysql.connector import connect, MySQLConnection
-from mysql.connector.connection import MySQLConnection
 from typing import Iterable
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
