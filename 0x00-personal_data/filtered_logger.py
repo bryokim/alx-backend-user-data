@@ -116,6 +116,8 @@ ip={};last_login={};user_agent={};""".format(
             *user
         )
         logger.info(message)
+        
+    cursor.close()
 
 
 if __name__ == "__main__":
