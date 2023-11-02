@@ -24,14 +24,7 @@ class RedactingFormatter(logging.Formatter):
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
-        """Format a record.
-
-        Args:
-            record (logging.LogRecord): A logging record.
-
-        Returns:
-            str: A string representation of record in desired format.
-        """
+        """Format a record."""
         msg = logging.Formatter(self.FORMAT).format(record)
         return filter_datum(self.fields, self.REDACTION, msg, self.SEPARATOR)
 
@@ -39,19 +32,7 @@ class RedactingFormatter(logging.Formatter):
 def filter_datum(
     fields: Iterable, redaction: str, message: str, separator: str
 ) -> str:
-    """Obfuscates fields with redaction in message.
-
-    Args:
-        fields (List): a list of strings representing all fields to obfuscate
-        redaction (str): a string representing by what the field will be
-            obfuscated
-        message (str):  a string representing the log line
-        separator (str): a string representing by which character is separating
-            all fields in the log line(message)
-
-    Returns:
-        str: An obfuscated message.
-    """
+    """Obfuscates fields with redaction in message."""
     pattern = r"(?P<field>{0})=[^{1}]*".format("|".join(fields), separator)
     replace = r"\g<field>={}".format(redaction)
     return re.sub(pattern, replace, message)
@@ -116,7 +97,7 @@ ip={};last_login={};user_agent={};""".format(
             *user
         )
         logger.info(message)
-        
+
     cursor.close()
 
 
