@@ -52,10 +52,9 @@ def filter_datum(
     Returns:
         str: An obfuscated message.
     """
-    for field in fields:
-        pattern = r"(?<={0}=)(.*?{1})".format(field, separator)
-        message = re.sub(pattern, f"{redaction}{separator}", message)
-    return message
+    pattern = r"(?P<field>{0})=[^{1}]*".format("|".join(fields), separator)
+    replace = r"\g<field>={}".format(redaction)
+    return re.sub(pattern, replace, message)
 
 
 def get_logger() -> logging.Logger:
