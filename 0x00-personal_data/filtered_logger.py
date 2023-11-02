@@ -5,7 +5,7 @@ import logging
 import os
 import re
 from mysql.connector import connect, MySQLConnection
-from typing import Iterable
+from typing import List
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
@@ -17,7 +17,7 @@ class RedactingFormatter(logging.Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
 
-    def __init__(self, fields: Iterable):
+    def __init__(self, fields: List[str]):
         """Initialize a new RedactingFormatter."""
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
@@ -29,7 +29,7 @@ class RedactingFormatter(logging.Formatter):
 
 
 def filter_datum(
-    fields: Iterable, redaction: str, message: str, separator: str
+    fields: List[str], redaction: str, message: str, separator: str
 ) -> str:
     """Obfuscates fields with redaction in message."""
     pattern = r"(?P<field>{0})=[^{1}]*".format("|".join(fields), separator)
