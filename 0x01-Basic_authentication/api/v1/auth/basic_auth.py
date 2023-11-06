@@ -65,8 +65,8 @@ class BasicAuth(Auth):
             decoded_base64_authorization_header (str): Decoded base64 string.
 
         Returns:
-            (str, str): Tuple of email and password. If the provided decoded base64
-                string is invalid, (None, None) is returned.
+            (str, str): Tuple of email and password. If the provided decoded
+                base64 string is invalid, (None, None) is returned.
         """
         if decoded_base64_authorization_header is None:
             return None, None

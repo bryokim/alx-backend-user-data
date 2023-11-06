@@ -15,11 +15,12 @@ class Auth:
 
         Args:
             path (str): Path to check.
-            excluded_paths (List[str]): List of paths that don't require authentication.
-                Paths in this list are assumed to be ending in a slash(/).
+            excluded_paths (List[str]): List of paths that don't require
+                authentication. Paths in this list are assumed to be ending
+                in a slash(/).
 
         Returns:
-            bool: True if the path is not in the list of strings excluded_paths,
+            bool: True if the path is not in the list of strings excluded_paths
                 else False.
         """
         if not path or not excluded_paths:
@@ -40,10 +41,12 @@ class Auth:
         return True
 
     def authorization_header(self, request=None) -> str:
-        """Check if the authorization header has been given and return its value.
+        """Check if the authorization header has been given and return its
+        value.
 
         Args:
-            request (Flask.request, optional): Flask request. Defaults to None.
+            request (Flask.request, optional): Flask request. Defaults to
+                None.
 
         Returns:
             str: Authorization header value if given, else None.
