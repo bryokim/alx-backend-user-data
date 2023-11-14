@@ -117,8 +117,11 @@ def update_password() -> Response:
         Response: A json response.
     """
     email = request.form.get("email")
-    reset_token = request.form.get("reset_token", "")
+    reset_token = request.form.get("reset_token")
     new_password = request.form.get("new_password")
+
+    if new_password is None or reset_token is None:
+        abort(403)
 
     try:
         AUTH.update_password(reset_token, new_password)
